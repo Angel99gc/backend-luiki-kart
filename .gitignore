@@ -44,6 +44,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-# Cartago's Server temporal background service
-# /WinServicesConfig

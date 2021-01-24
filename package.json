@@ -1,0 +1,22 @@
+{
+  "name": "Backend",
+  "version": "1.0.0",
+  "description": "Backend in Node JS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Angel Gamboa Cruz y Kervin Sibaja",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.1",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.5",
+    "mssql": "^6.3.1"
+  },
+  "keywords": []
+}

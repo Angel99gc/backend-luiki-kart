@@ -1,5 +1,5 @@
 {
-  "name": "Backend",
+  "name": "backend",
   "version": "1.0.0",
   "description": "Backend in Node JS",
   "main": "server.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Angel Gamboa Cruz y Kervin Sibaja",
+  "author": "Angel Gamboa Cruz",
   "license": "ISC",
   "dependencies": {
     "debug": "^4.3.1",

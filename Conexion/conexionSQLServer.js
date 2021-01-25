@@ -2,6 +2,7 @@ const sql = require('mssql');
 const sqlConfig = require('./config');
 let connexionPool = null;
 
+
 const getPoolConnexion = () => {
     if (connexionPool) return connexionPool;
     connexionPool = new Promise((resolve, reject) => {

@@ -5,6 +5,7 @@ exports.getRanking = async () => {
         const connexion = await connexionSql.getPoolConnexion();
         const result = await connexion.request()
             .execute('getRanking');
+
         return result;
     } catch (err) {
         throw err;

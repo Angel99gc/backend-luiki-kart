@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="831e8754-56a0-4336-8f20-50bb6d962f8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Clases/Partida.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appSocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base de Datos/Base de Datos.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Base de Datos/Base de Datos.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Consultas/consultaSQL.js" beforeDir="false" afterPath="$PROJECT_DIR$/Consultas/consultaSQL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controlador/ctrlSQL.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controlador/ctrlSQL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/appHTTP.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +39,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.19.15" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Escritorio 2020 - 2/Biblioteca Cartago/rpb-backend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,6 +73,13 @@
       <workItem from="1611502981491" duration="10426000" />
       <workItem from="1611536469548" duration="1949000" />
       <workItem from="1611540732970" duration="725000" />
+      <workItem from="1611552394308" duration="6587000" />
+      <workItem from="1611587713286" duration="3467000" />
+      <workItem from="1611596454978" duration="13111000" />
+      <workItem from="1611649384121" duration="9000" />
+      <workItem from="1611694170669" duration="13912000" />
+      <workItem from="1611765050014" duration="115000" />
+      <workItem from="1611783198809" duration="33019000" />
     </task>
     <servers />
   </component>
@@ -84,6 +99,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1611503939064" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611791027668">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611791027668" />
+    <state x="136" y="244" key="run.anything.popup" timestamp="1611699143765">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="136" y="244" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611699143765" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611621293191">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611621293191" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="831e8754-56a0-4336-8f20-50bb6d962f8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Clases/Partida.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appSocket.js" afterDir="false" />
+    <list default="true" id="831e8754-56a0-4336-8f20-50bb6d962f8f" name="Default Changelist" comment="- Varios Cambios">
+      <change afterPath="$PROJECT_DIR$/Clases/Jugador.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Base de Datos/Base de Datos.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Base de Datos/Base de Datos.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Clases/Partida.js" beforeDir="false" afterPath="$PROJECT_DIR$/Clases/Partida.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Consultas/consultaSQL.js" beforeDir="false" afterPath="$PROJECT_DIR$/Consultas/consultaSQL.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controlador/ctrlSQL.js" beforeDir="false" afterPath="$PROJECT_DIR$/Controlador/ctrlSQL.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/appHTTP.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appHTTP.js" beforeDir="false" afterPath="$PROJECT_DIR$/serverHTTP.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,34 +76,65 @@
       <workItem from="1611649384121" duration="9000" />
       <workItem from="1611694170669" duration="13912000" />
       <workItem from="1611765050014" duration="115000" />
-      <workItem from="1611783198809" duration="33019000" />
+      <workItem from="1611783198809" duration="34523000" />
+      <workItem from="1611859416454" duration="7001000" />
+      <workItem from="1611882083449" duration="607000" />
+      <workItem from="1611952951074" duration="2265000" />
+      <workItem from="1611961971147" duration="786000" />
+      <workItem from="1611963222651" duration="7822000" />
+      <workItem from="1612023708924" duration="1143000" />
+      <workItem from="1612057265009" duration="5603000" />
+      <workItem from="1612067886154" duration="9250000" />
+      <workItem from="1612077821906" duration="581000" />
+      <workItem from="1612110338731" duration="599000" />
+      <workItem from="1612155714037" duration="3112000" />
     </task>
+    <task id="LOCAL-00001" summary="- Varios Cambios">
+      <created>1611830362017</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1611830362017</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Varios Cambios" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Varios Cambios" />
   </component>
   <component name="WindowStateProjectService">
     <state x="710" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611503812937">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="710" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1611503812937" />
-    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1611514154016">
+    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1611830402001">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1611514154016" />
+    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1611830402001" />
+    <state x="208" y="86" key="DiffContextDialog" timestamp="1611830329621">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="208" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611830329621" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1611503939064">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1611503939064" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1611830366512">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1611830366512" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1611791027668">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611791027668" />
-    <state x="136" y="244" key="run.anything.popup" timestamp="1611699143765">
+    <state x="136" y="244" key="run.anything.popup" timestamp="1612155784826">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="136" y="244" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611699143765" />
+    <state x="136" y="244" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1612155784826" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611621293191">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

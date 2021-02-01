@@ -1,5 +1,9 @@
+
 const connexionSql = require('../Conexion/conexionSQLServer.js');
 
+
+
+/** Funcion para ejecutar el procedimiento para agregar el ganador a la base de datos  **/
 exports.getRanking = async () => {
     try {
         const connexion = await connexionSql.getPoolConnexion();
@@ -13,6 +17,7 @@ exports.getRanking = async () => {
 
 };
 
+/** Funcion para ejecutar el procedimiento para agregar el ganador a la base de datos  **/
 exports.addRanking = async (req) => {
     try{
         const pool = await connexionSql.getPoolConnexion();

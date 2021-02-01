@@ -11,5 +11,8 @@ class Partida{
         this.tiempoSala = tiempoSala;
         this.jugadores = [];
     }
+    addJugador(jugador){
+        this.jugadores.push(jugador)
+    }
 }
 module.exports = Partida;

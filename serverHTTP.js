@@ -1,27 +1,24 @@
 const express = require('express');
-const appHTTP = express();
+const app = express();
 const http = require('http');
 
-//const logger = require('morgan');
-//const cookieParser = require('cookie-parser');
-
 const ctrlSQL = require('./Controlador/ctrlSQL.js') ;
+// const path = require("path");
 
-//Variables guardadas en la appHTTP.
-appHTTP.set('puerto', process.env.PORT || 3000);
-
-
-
+//Variables guardadas en la app.
+app.set('puerto', process.env.PORT || 3000);
 
 
 
-appHTTP.use(express.json());
-//appHTTP.use(logger('dev'));
-//appHTTP.use(cookieParser());
+
+
+
+app.use(express.json());
 // Para utilizar un directorio en el backend en el frontend.
-//appHTTP.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
-appHTTP.use((req, res, next) => {
+//Header de express con los CORS
+app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials");
     res.header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
@@ -29,30 +26,33 @@ appHTTP.use((req, res, next) => {
     next();
 });
 
+//Para mostrar estadisticas.
+app.use('/ranking', ctrlSQL);
+
 // Para realizar pruebas de funcionalidad
 // devuelve un message en json siempre.
-// appHTTP.use((Request, Response, next)=>{
+// app.use((Request, Response, next)=>{
 //     Response.status(200).json({
 //         message: 'It works'
 //     })
 // });
-
-
 //Los get y post.
-appHTTP.use('/ranking', ctrlSQL);
-appHTTP.get('/api/courses',(request, response)=>{
-    response.send([1, 2, 3])
-});
+//para realizar pruebas si el servidor esta escuchando
+// app.use('/',(req, res) =>{
+//     res.send('Servidor Funcional');
+//     //res.sendFile(path.join(__dirname, 'index.html'));
+// })
+
 
 /**
  * Manejo de errores.
  */
-appHTTP.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) {
     res.status(err.status || 500)
         .json({ error: err.message });
 });
 
-const server = http.createServer(appHTTP);
+const server = http.createServer(app);
 
 
 module.exports = server;

@@ -1,5 +1,7 @@
-//Controlador de SQL
-var express = require('express');
+/** Controlador de SQL
+ * Es usado para redireccionar hacia las consultas a la Base de Datos SQL
+ * Y para obtener algunos errores durante la conexion**/
+const express = require('express');
 const router = express.Router();
 
 const querySQL = require('../Consultas/consultaSQL.js');

@@ -51,55 +51,92 @@ let idSala = 1;
 
 io.on('connection', socket => {
      console.log("Nueva conexion de socket. ID: " + socket.id);
-     let idPartida;
-     const getPartida = () => {
-          partidas.forEach( partida =>{
-               if(partida.id === idPartida){
-                    return partida;
-               }
-          })
-          return null;
-     }
+
      //VISTA UNIRSE A PARTIDA
-     //emite las partidas en espera y que ya se haya unido el jugador que la creo.
-     socket.emit('getPartida', getPartida());
+     //emite el id de la sala nueva
+     socket.emit('getIdSala', idSala);
      //emite las partidas en espera y que ya se haya unido el jugador que la creo.
      socket.emit('getPartidasEspera', getPartidasEspera());
 
      //PARA CREAR UN NUEVO JUEGO.
      //crea una nueva sala e incrementa el id.
-     socket.on('crearSala', configSala => {
+     socket.on('crearSala', async configSala => {
           socket.join('sala-' + idSala.toString());
-          partidas.push(new Partida(idSala, 'espera', configSala._tipo, configSala._contratiempo, configSala._pista, configSala._vueltas, configSala._cantJugadores, configSala._tiempoSala))
+          partidas.push(new Partida(idSala, 'espera', configSala.tipo, configSala.contratiempo, configSala.pista, configSala.vueltas, configSala.cantJugadores, configSala.tiempoSala))
+          partidas.forEach( data =>{
+               if(data.id===idSala){
+                    data.jugadores.push(new Jugador(socket.id, configSala.nombre, configSala.carro))
+               }
+          })
+          let idPartida = idSala;
+          idSala++;
+          io.emit('getIdSala', idSala);
+
+          //para que espere el intervalo de tiempo y actualice el tiempo de espera.
+          let segundos = configSala.tiempoSala/1000;
+          let tiempoEspera = setInterval(()=>{
+               segundos--;
+               io.to('sala-'+idPartida.toString()).emit('tiempoEspera', segundos)
+               //se compara para ver si se acaba el tiempo de espera.
+               if(segundos===0){
+                    partidas.forEach(data=>{
+                         if(idPartida===data.id){
+                              //si se acabo el tiempo de espera.
+                              io.in('sala-'+idPartida.toString()).emit('getPartida',data);
+                              clearInterval(tiempoEspera);
+                         }
+                    })
+               }
+          },1000);
           /**FALTA LA PARTE DE ACTUALIZAR LA LISTA DE LOS INGRESADOS.**/
           /** -------------------io.to(sala).emit()------------------**/
           //mensaje a todos los conectados a la sala
           //io.in('sala-' + idSala.toString()).emit('Partidas', getPartidasEspera());
-          idPartida = idSala;
-          idSala++;
-          console.log(partidas);
 
      });
      //Se une a una sala para el juego
      socket.on('unirseSala', data => {
           //se une a la sala un nuevo usuario
-          if(data.idPartida!==0){
-               console.log('sala creada')
-               socket.join('sala-'+ data.idPartida.toString());
-               idPartida=data.idPartida;
-          }
-          console.log(idPartida)
+          console.log('se unio un nuevo jugador a la sala: ', socket.id)
+          console.log(data);
+          socket.join('sala-'+ data.idPartida.toString());
           partidas.forEach( partida => {
-               if(partida.id === parseInt(idPartida)){
-                    console.log('agregoa a jugador'+socket.id)
-                    partida.addJugador(new Jugador(socket.id, data.nombre, data.carro));
+               if(partida.id === parseInt(data.idPartida)){
+                    partida.jugadores.push(new Jugador(socket.id, data.nombre, data.carro));
+                    io.in('sala-'+data.idPartida.toString()).emit('getPartida',partida);
+
                }
           })
-          console.log(partidas);
           io.emit('getPartidasEspera', getPartidasEspera());
-          io.to('sala-'+idPartida).emit('getPartida', getPartida());
+     })
+     //Al apretar el boton la partida es iniciada.
+     socket.on('iniciarPartida', async data => {
+          //Inicia la partida.
+          console.log(data);
+          partidas.forEach( partida => {
+               if(partida.id === parseInt(data.idPartida)){
+                    data.estado = 'iniciada';
+                    io.emit('getPartidasEspera', getPartidasEspera());
+                    io.in('sala-'+data.idPartida.toString()).emit('getPartida', partida);
+                    let segundos = 0;
+                    let tiempo = setInterval( () => {
+                         segundos++;
+                         io.in('sala-'+data.idPartida.toString()).emit('tiempoCarrera', segundos)
+                    }, 1000);
+               }
+          })
      })
 
+     //Actualiza la partida a todos los usuarios de la sala.
+     socket.on('updatePartida', id => {
+          partidas.forEach( partida => {
+               if(partida.id === parseInt(id)){
+                    io.to('sala-'+id).emit('getPartida',partida);
+               }
+          })
+          io.emit('getPartidasEspera', getPartidasEspera());
+          //io.to('sala-'+data.idPartida).emit('getPartida', getPartida());
+     })
 
      socket.on('disconnect', () => {
           //console.log(idPartida);

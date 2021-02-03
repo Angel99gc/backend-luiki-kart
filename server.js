@@ -80,7 +80,7 @@ io.on('connection', socket => {
                //se compara para ver si se acaba el tiempo de espera.
                if(segundos===0){
                     partidas.forEach(data=>{
-                         if(idPartida===data.id){
+                         if(idPartida===data.id || data.estado==='iniciada'){
                               //si se acabo el tiempo de espera.
                               io.in('sala-'+idPartida.toString()).emit('getPartida',data);
                               clearInterval(tiempoEspera);
@@ -112,11 +112,13 @@ io.on('connection', socket => {
      //Al apretar el boton la partida es iniciada.
      socket.on('iniciarPartida', async data => {
           //Inicia la partida.
+          console.log('iniciar')
           console.log(data);
           partidas.forEach( partida => {
+               console.log(partida);
                if(partida.id === parseInt(data.idPartida)){
-                    data.estado = 'iniciada';
-                    io.emit('getPartidasEspera', getPartidasEspera());
+                    console.log('entro');
+                    partida.estado = 'iniciada';
                     io.in('sala-'+data.idPartida.toString()).emit('getPartida', partida);
                     let segundos = 0;
                     let tiempo = setInterval( () => {
@@ -124,6 +126,88 @@ io.on('connection', socket => {
                          io.in('sala-'+data.idPartida.toString()).emit('tiempoCarrera', segundos)
                     }, 1000);
                }
+          });
+          io.emit('getPartidasEspera', getPartidasEspera());
+     })
+     //cambia la direccion del jugador.
+     socket.on('setDireccionJugador', data => {
+          partidas.forEach(partida => {
+               if (parseInt(data.idPartida) === partida.id){
+                    partida.jugadores.forEach( jugador =>{
+                         console.log(jugador)
+                         if (jugador.nombre === data.nombre){
+                              console.log('Jugador con nueva direccion: ', jugador.nombre)
+                              jugador.direccion = data.direccion;
+                         }
+                    })
+                    io.in('sala-'+data.idPartida.toString()).emit('getPartida', partida);
+
+               }
+
+          })
+     })
+
+     socket.on('avanzarJugador', data => {
+          partidas.forEach(partida => {
+               if (parseInt(data.idPartida) === partida.id){
+                    partida.jugadores.forEach( jugador =>{
+                         if (jugador.nombre === data.nombre){
+                              console.log('Jugador: ', jugador)
+                              console.log('PARTIDA: ', partida);
+                              let velocidad = 10;
+                              if (data.carro === 'Blanco'){
+                                   velocidad = 5;
+                              }
+                              if (jugador.direccion === 'izquierda'){
+                                   if (jugador.x > 0){
+                                        if (150 < jugador.y && jugador.y < 700){
+                                             if(jugador.x > 650 || jugador.x < 110){
+                                                  jugador.x -= velocidad;
+                                             }
+                                        }else{
+                                             jugador.x -= velocidad;
+                                        }
+                                   }
+                              }else if(jugador.direccion === 'derecha'){
+                                   if (jugador.x < 750){
+                                        if (150 < jugador.y && jugador.y < 700){
+                                             if(jugador.x < 100 || jugador.x > 660){
+                                                  jugador.x += velocidad;
+                                             }
+                                        }else{
+                                             jugador.x += velocidad;
+                                        }
+                                   }
+                              }else if(jugador.direccion === 'arriba' ){
+                                   if (jugador.y > 50){
+                                        //dentro del cuadro
+                                        if (100 < jugador.x && jugador.x < 650){
+                                             if (jugador.y < 160 || jugador.y > 700){
+                                                  jugador.y -=velocidad;
+                                             }
+                                        }else {
+                                             jugador.y -= velocidad;
+                                        }
+                                   }
+                              }else if(jugador.direccion === 'abajo') {
+                                   if (jugador.y < 800){
+                                        //dentro del cuadro
+                                        if (100 < jugador.x && jugador.x < 650){
+                                             if (jugador.y < 150 || jugador.y > 690){
+                                                  jugador.y +=velocidad;
+                                             }
+                                        }else {
+                                             jugador.y += velocidad;
+                                        }
+                                   }
+                              }
+                              io.in('sala-'+data.idPartida.toString()).emit('getPartida', partida);
+
+                         }
+                    })
+
+               }
+
           })
      })
 

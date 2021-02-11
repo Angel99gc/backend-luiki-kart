@@ -79,10 +79,16 @@ io.on('connection', socket => {
                io.to('sala-'+idPartida.toString()).emit('tiempoEspera', segundos)
                //se compara para ver si se acaba el tiempo de espera.
                if(segundos===0){
-                    partidas.forEach(data=>{
-                         if(idPartida===data.id || data.estado==='iniciada'){
-                              //si se acabo el tiempo de espera.
-                              io.in('sala-'+idPartida.toString()).emit('getPartida',data);
+
+                    partidas.forEach(partida=>{
+                         if(idPartida===partida.id){
+                              if(partida.jugadores.length === partida.cantJugadores){
+                                   //si se acabo el tiempo de espera.
+                              }else{
+                                   partida.estado = 'iniciada';
+                              }
+                              io.in('sala-'+idPartida.toString()).emit('getPartida',partida);
+                              io.emit('getPartidasEspera', partidas);
                               clearInterval(tiempoEspera);
                          }
                     })
@@ -97,8 +103,6 @@ io.on('connection', socket => {
      //Se une a una sala para el juego
      socket.on('unirseSala', data => {
           //se une a la sala un nuevo usuario
-          console.log('se unio un nuevo jugador a la sala: ', socket.id)
-          console.log(data);
           socket.join('sala-'+ data.idPartida.toString());
           partidas.forEach( partida => {
                if(partida.id === parseInt(data.idPartida)){
@@ -112,12 +116,8 @@ io.on('connection', socket => {
      //Al apretar el boton la partida es iniciada.
      socket.on('iniciarPartida', async data => {
           //Inicia la partida.
-          console.log('iniciar')
-          console.log(data);
           partidas.forEach( partida => {
-               console.log(partida);
                if(partida.id === parseInt(data.idPartida)){
-                    console.log('entro');
                     partida.estado = 'iniciada';
                     io.in('sala-'+data.idPartida.toString()).emit('getPartida', partida);
                     let segundos = 0;
@@ -134,9 +134,7 @@ io.on('connection', socket => {
           partidas.forEach(partida => {
                if (parseInt(data.idPartida) === partida.id){
                     partida.jugadores.forEach( jugador =>{
-                         console.log(jugador)
                          if (jugador.nombre === data.nombre){
-                              console.log('Jugador con nueva direccion: ', jugador.nombre)
                               jugador.direccion = data.direccion;
                          }
                     })
@@ -146,14 +144,12 @@ io.on('connection', socket => {
 
           })
      })
-
+     //permite al jgador avanzar siempre y cuando no choque
      socket.on('avanzarJugador', data => {
           partidas.forEach(partida => {
                if (parseInt(data.idPartida) === partida.id){
                     partida.jugadores.forEach( jugador =>{
                          if (jugador.nombre === data.nombre){
-                              console.log('Jugador: ', jugador)
-                              console.log('PARTIDA: ', partida);
                               let velocidad = 10;
                               if (data.carro === 'Blanco'){
                                    velocidad = 5;
@@ -224,9 +220,8 @@ io.on('connection', socket => {
 
      socket.on('disconnect', () => {
           //console.log(idPartida);
-          console.log(socket.id);
           //partidas[idPartida].deleteJugador(socket.id);
-          console.log('Usuario desconectado');
+          console.log('Usuario desconectado: ' + socket.id);
      });
 });
 
